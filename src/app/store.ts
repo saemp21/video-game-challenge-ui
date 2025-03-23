@@ -1,14 +1,9 @@
-import type {
-  ThunkAction,
-  Action
-} from '@reduxjs/toolkit';
 import {
   configureStore,
+  ThunkAction,
+  Action,
   combineReducers,
-} from '@reduxjs/toolkit';
-import type {
-  Persistor
-} from 'redux-persist';
+} from "@reduxjs/toolkit";
 import {
   persistReducer,
   FLUSH,
@@ -17,44 +12,36 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-  persistStore
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-// import storageSession from 'redux-persist/lib/storage/session';
-import { api } from './api';
-// import { encryptTransform } from 'redux-persist-transform-encrypt';
+  persistStore,
+  Persistor,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { baseApi } from "./api";
+import { loginSlice } from "./sliceLogin";
 
 const rootReducer = combineReducers({
-  [ api.reducerPath ]: api.reducer,
+  login: loginSlice.reducer,
+  [baseApi.reducerPath]: baseApi.reducer,
 });
 
 export const persistedReducer = persistReducer(
   {
-    // transforms: [
-    // 	encryptTransform({
-    // 		secretKey: 'my-super-secret-key',
-    // 		onError: function (error) {
-    // 			console.log('error', error);
-    // 		},
-    // 	}),
-    // ],
-    key: 'persistApp',
+    key: "root",
     version: 1,
     storage,
-    // whitelist: ['auth'], //Elementos que pueden ser guardados en el localstorage
+    whitelist: [],
   },
-  rootReducer,
+  rootReducer
 );
-
 export const store = configureStore({
   reducer: persistedReducer,
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: import.meta.env.VITE_API_DEV_URL !== "production",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [ FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER ],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(api.middleware),
+    }).concat(baseApi.middleware),
 });
 
 export const persistor: Persistor = persistStore(store);

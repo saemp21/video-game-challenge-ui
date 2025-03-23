@@ -1,13 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { routerArray } from "./router/indes";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./app/store";
 
-createRoot(document.getElementById('root')!).render(
+const router = createBrowserRouter(routerArray);
+
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <div className='w-full h-screen flex flex-col justify-center items-center'>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </div>
-  </StrictMode>,
-)
+    <Provider store={store}>
+      <PersistGate loading={<>...</>} persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
+  </StrictMode>
+);

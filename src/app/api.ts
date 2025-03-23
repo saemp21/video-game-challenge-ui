@@ -1,16 +1,9 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-// import { RootState } from '../app/store';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseQuery = fetchBaseQuery({
-	baseUrl: import.meta.env.VITE_DEV_URL, // Define la URL base del backend
-	// prepareHeaders: (headers, {}) => {
-	prepareHeaders: (headers) => {
+const api = fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_URL });
 
-		return headers;
-	},
-});
-
-export const api = createApi({
-	baseQuery,
-	endpoints: () => ({}),
+export const baseApi = createApi({
+  reducerPath: "baseApi",
+  baseQuery: api,
+  endpoints: () => ({}),
 });
