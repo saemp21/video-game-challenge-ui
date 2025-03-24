@@ -14,8 +14,16 @@ export default function BuyTournament() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const [requestFunction, { data, isLoading, isError, reset, isSuccess }] =
-    useBuyTicketMutation();
+  const [
+    // requestFunction,
+    {
+      // data,
+      // isLoading,
+      // isError,
+      //  reset,
+      //  isSuccess
+    },
+  ] = useBuyTicketMutation();
 
   const methods = useForm<FormTicketProps>({
     mode: "all",
@@ -156,7 +164,7 @@ export default function BuyTournament() {
                 placeholder="Donación $"
               />
               <div className="flex col-span-2 flex-row justify-end gap-4 w-full">
-                {isLoading ? (
+                {/* {isLoading ? (
                   <div className="flex text-center justify-center flex-row gap-2 px-4 py-2">
                     <svg
                       className="animate-spin -ml-1 mr-3 h-5 w-5 text-black"
@@ -177,24 +185,24 @@ export default function BuyTournament() {
                     </svg>
                     Registrando boleta
                   </div>
-                ) : (
-                  <>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        navigate("/shopping");
-                      }}
-                      className="px-4 py-2 border hover:opacity-85 bg-red-400">
-                      Cancelar
-                    </button>
-                    <button
-                      disabled={!methods.formState.isValid}
-                      className="disabled:bg-slate-300 px-4 py-2 border hover:opacity-85 bg-green-400">
-                      Comprar
-                    </button>
-                  </>
-                )}
+                ) : ( */}
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      navigate("/shopping");
+                    }}
+                    className="px-4 py-2 border hover:opacity-85 bg-red-400">
+                    Cancelar
+                  </button>
+                  <button
+                    disabled={!methods.formState.isValid}
+                    className="disabled:bg-slate-300 px-4 py-2 border hover:opacity-85 bg-green-400">
+                    Comprar
+                  </button>
+                </>
+                {/*  )} */}
               </div>
             </form>
           </FormProvider>

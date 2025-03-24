@@ -10,8 +10,16 @@ export default function Shopping() {
   const navigate = useNavigate();
   const ticketType = useAppSelector((state) => state.arena.ticketType);
 
-  const [requestFunction, { data, isLoading, isError, reset, isSuccess }] =
-    useGetAllTicketsMutation();
+  const [
+    requestFunction,
+    {
+      // data,
+      isLoading,
+      isError,
+      reset,
+      //  isSuccess
+    },
+  ] = useGetAllTicketsMutation();
 
   useEffect(() => {
     const runService = async () => {

@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../app/hook";
+import { useAppSelector } from "../app/hook";
 
 export default function Resume() {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const resume = useAppSelector((state) => state.arena.tournament);
 
   return (
