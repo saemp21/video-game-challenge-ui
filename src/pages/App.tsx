@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import InputField from "./components/InputField";
-import { Form } from "./utils";
-import { useLoginMutation } from "./app/services";
-import { useAppDispatch, useAppSelector } from "./app/hook";
-import { increment, setNumber } from "./app/sliceLogin";
+import InputField from "../components/InputField";
+// import { Form } from "../utils";
+// import { useLoginMutation } from "../app/services";
+import { useAppDispatch, useAppSelector } from "../app/hook";
+// import { increment, setNumber } from "../app/sliceArena";
 
 export default function App() {
   const navigate = useNavigate();
-  const [login, { isError, isLoading }] = useLoginMutation();
-  const perico = useAppSelector((state) => state.login.perico);
+  // const [login, { isError, isLoading }] = useLoginMutation();
+  // const perico = useAppSelector((state) => state.login.perico);
   const dispatch = useAppDispatch();
 
   const { control, handleSubmit } = useForm({
@@ -17,28 +17,28 @@ export default function App() {
     criteriaMode: "all",
   });
 
-  const onSubmit = async ({ ...data }) => {
-    const { email, password } = data as Form;
-    try {
-      await login({ email, password })
-        .unwrap()
-        .then(() => {
-          navigate("/mundo");
-        });
-    } catch (error) {
-      console.error(error);
-      alert("Error al iniciar sesión");
-    }
-    console.log({ email, password });
-  };
+  // const onSubmit = async ({ ...data }) => {
+  //   const { email, password } = data as Form;
+  //   try {
+  //     await login({ email, password })
+  //       .unwrap()
+  //       .then(() => {
+  //         navigate("/mundo");
+  //       });
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("Error al iniciar sesión");
+  //   }
+  //   console.log({ email, password });
+  // };
 
-  if (isLoading) {
-    return <div>Cargando...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Cargando...</div>;
+  // }
 
-  if (isError) {
-    return <div>Error al iniciar sesión</div>;
-  }
+  // if (isError) {
+  //   return <div>Error al iniciar sesión</div>;
+  // }
 
   return (
     <main>
@@ -46,7 +46,7 @@ export default function App() {
         <h1>hola</h1>
         <p>parrafos</p>
         <br />
-        <form id="login" onSubmit={handleSubmit(onSubmit)}>
+        <form id="login" onSubmit={handleSubmit(() => {})}>
           <InputField
             inputId="email"
             label="Correo"
@@ -85,7 +85,7 @@ export default function App() {
           Navegar
         </button>
         <br />
-        <p>Valor de perico: {perico}</p>
+        {/* <p>Valor de perico: {perico}</p> */}
 
         <br />
         <button
@@ -93,7 +93,7 @@ export default function App() {
             e.preventDefault();
             e.stopPropagation();
 
-            dispatch(increment());
+            // dispatch(increment());
           }}>
           Incrementar
         </button>
@@ -102,7 +102,7 @@ export default function App() {
             e.preventDefault();
             e.stopPropagation();
 
-            dispatch(setNumber(50));
+            // dispatch(setNumber(50));
           }}>
           Asignar
         </button>

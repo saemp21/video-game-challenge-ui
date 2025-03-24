@@ -1,10 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { routerArray } from "./router/indes";
+import { routerArray } from "./router";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "./app/store";
+import "./index.css"
 
 const router = createBrowserRouter(routerArray);
 

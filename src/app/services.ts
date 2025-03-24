@@ -1,24 +1,51 @@
+import { ArenaProps, RequestBodyGetATicketProps, ShoppingItemsProps } from "../utils/interface";
 import { baseApi } from "./api";
 
 export const service = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    profile: build.query<{ code: number; data: unknown }, void>({
-      query: () => ({
-        url: "/me",
-        method: "GET",
-      }),
-    }),
-    login: build.mutation<
-      { code: number; data: unknown },
-      { password: string; email: string }
-    >({
+    // profile: build.query<{ code: number; data: unknown }, void>({
+    //   query: () => ({
+    //     url: "/me",
+    //     method: "GET",
+    //   }),
+    // }),
+    // login: build.mutation<
+    //   { code: number; data: unknown },
+    //   { password: string; email: string }
+    // >({
+    //   query: (body) => ({
+    //     url: "/login",
+    //     method: "POST",
+    //     body,
+    //   }),
+    // }),
+    getAllTickets: build.mutation<{
+      code: number;
+      message: string;
+      data: ShoppingItemsProps
+    }, ArenaProps>({
       query: (body) => ({
-        url: "/login",
+        url: "/ticket-list",
         method: "POST",
-        body,
-      }),
+        body
+      })
+    }),
+    buyTicket: build.mutation<{
+      code: number;
+      message: string;
+      data: unknown
+    }, Partial<RequestBodyGetATicketProps>>({
+      query: (body) => ({
+        url: "/buy-ticket",
+        method: "POST",
+        body
+      })
     }),
   }),
 });
 
-export const { useProfileQuery, useLoginMutation } = service;
+export const { useGetAllTicketsMutation, useBuyTicketMutation } = service;
+
+
+//Compras navega a lista de torneos (desc, titulo, precio)
+//Ingresar evento navega a ingresar la boleta consumir servicio para comprobar la boleta

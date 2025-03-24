@@ -17,11 +17,11 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { baseApi } from "./api";
-import { loginSlice } from "./sliceLogin";
+import { arenaSlice } from "./sliceArena";
 
 const rootReducer = combineReducers({
-  login: loginSlice.reducer,
-  [baseApi.reducerPath]: baseApi.reducer,
+  [ arenaSlice.name ]: arenaSlice.reducer,
+  [ baseApi.reducerPath ]: baseApi.reducer,
 });
 
 export const persistedReducer = persistReducer(
@@ -39,7 +39,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [ FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER ],
       },
     }).concat(baseApi.middleware),
 });
