@@ -2,29 +2,29 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Field from "../components/Field";
 import FieldTextArea from "../components/FieldTextArea";
-import { FormTicketProps, FormTournamentProps } from "../utils/interface";
+import { FormTournamentProps } from "../utils/interface";
 import { regularExp } from "../utils/regex";
-import { useBuyTicketMutation } from "../app/services";
-import { useAppDispatch } from "../app/hook";
-import moment from "moment";
+// import { useBuyTicketMutation } from "../app/services";
+// import { useAppDispatch } from "../app/hook";
+// import moment from "moment";
 import "moment-timezone";
 import FieldSelect from "../components/FieldSelect";
 //Compras navega a lista de torneos (desc, titulo, precio)
 
 export default function CreateTournament() {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const [
-    // requestFunction,
-    {
-      // data,
-      // isLoading,
-      // isError,
-      //  reset,
-      //  isSuccess
-    },
-  ] = useBuyTicketMutation();
+  // const [
+  // requestFunction,
+  // {
+  // data,
+  // isLoading,
+  // isError,
+  //  reset,
+  //  isSuccess
+  // },
+  // ] = useBuyTicketMutation();
 
   const methods = useForm<FormTournamentProps>({
     mode: "all",
