@@ -3,6 +3,7 @@ import MainPage from "../pages/MainPage";
 import Shopping from "../pages/Shopping";
 import BuyTournament from "../pages/BuyTournament";
 import Resume from "../pages/Resume";
+import Login from "../pages/Login";
 
 export const routerArray: RouteObject[] = [
   {
@@ -11,6 +12,10 @@ export const routerArray: RouteObject[] = [
       {
         path: "",
         element: <MainPage />,
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
       {
         path: "shopping",

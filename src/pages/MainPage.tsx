@@ -12,7 +12,9 @@ export default function MainPage() {
         <h1 className="text-5xl font-bold">Pragma Arena</h1>
         <div className="flex flex-row gap-4">
           <div
-            onClick={() => {}}
+            onClick={() => {
+              navigate("/login");
+            }}
             className="border p-4 cursor-pointer hover:bg-slate-100 rounded-lg capitalize font-bold">
             login
           </div>
