@@ -11,10 +11,10 @@ import { AuthProvider } from "react-oidc-context";
 
 const cognitoAuthConfig = {
   authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_NhNo7vjQ3",
-  client_id: "mjirikg0l0hqhgd8nmq7csa92",
+  client_id: "56smpmo8n7nua9v5fhnsq97jd2",
   redirect_uri: "https://d84l1y8p4kdic.cloudfront.net",
   response_type: "code",
-  scope: "aws.cognito.signin.user.admin openid",
+  scope: "email openid phone",
 };
 
 const router = createBrowserRouter(routerArray);
