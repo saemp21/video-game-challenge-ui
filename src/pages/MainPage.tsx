@@ -29,7 +29,7 @@ export default function MainPage() {
           <div
             onClick={() => {
               auth.signinRedirect({
-                redirect_uri: "https://main.d12rdorbfrxk5.amplifyapp.com/login",
+                redirect_uri: "https://main.d12rdorbfrxk5.amplifyapp.com",
               });
             }}
             className="border p-4 cursor-pointer hover:bg-slate-100 rounded-lg capitalize font-bold">
