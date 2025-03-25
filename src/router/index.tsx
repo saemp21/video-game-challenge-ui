@@ -3,6 +3,9 @@ import MainPage from "../pages/MainPage";
 import Shopping from "../pages/Shopping";
 import BuyTournament from "../pages/BuyTournament";
 import Resume from "../pages/Resume";
+import Manager from "../pages/Manager";
+import CreateTournament from "../pages/CreateTournament";
+import Statistics from "../pages/Statistics";
 // import Login from "../pages/Login";
 
 export const routerArray: RouteObject[] = [
@@ -23,7 +26,15 @@ export const routerArray: RouteObject[] = [
         children: [
           {
             path: "",
-            element: <>Manager</>,
+            element: <Manager />,
+          },
+          {
+            path: "create-tournament",
+            element: <CreateTournament />,
+          },
+          {
+            path: "statistics",
+            element: <Statistics />,
           },
         ],
       },

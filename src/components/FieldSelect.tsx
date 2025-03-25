@@ -1,33 +1,28 @@
 import { Controller, RegisterOptions, useFormContext } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
-interface FielProps {
+interface FielSelectProps {
   name: string;
   rules?: RegisterOptions;
   autoComplete?: "" | "off" | "on";
-  type?:
-    | "date"
-    | "text"
-    | "password"
-    | "email"
-    | "number"
-    | "tel"
-    | "url"
-    | "search";
   hidden?: boolean;
   placeholder: string;
   label: string;
+  options?: Array<{
+    value: string | number;
+    label: string;
+  }>;
 }
 
-export default function Field({
+export default function FieldSelect({
   name = "",
+  options = [],
   rules = {},
   autoComplete = "off",
-  type = "text",
   hidden = false,
   placeholder = "",
   label = "",
-}: FielProps) {
+}: FielSelectProps) {
   const methods = useFormContext();
   return (
     <label className="form-control w-full max-w-xs">
@@ -44,7 +39,7 @@ export default function Field({
               <span className="label-text">{label}</span>
               {/* <span className="label-text-alt">Top Right label</span> */}
             </div>
-            <input
+            <select
               autoComplete={autoComplete}
               name={name}
               onBlur={onBlur}
@@ -52,13 +47,19 @@ export default function Field({
               ref={ref}
               value={value}
               disabled={disabled}
-              type={type}
               hidden={hidden}
-              placeholder={`${placeholder}${rules.required && "*"}`}
-              className={`input input-bordered w-80 max-w-xs ${
+              className={`select select-bordered w-80 max-w-xs ${
                 formState.errors[name] ? "input-error" : ""
-              }`}
-            />
+              }`}>
+              <option disabled selected>
+                {`${placeholder}${rules.required && "*"}`}
+              </option>
+              {options.map((item, index) => (
+                <option key={index} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
             {/* <div className="label"> */}
             {/* <span className="label-text-alt">Bottom Left label</span> */}
             {/* <span className="label-text-alt">Bottom Right label</span> */}

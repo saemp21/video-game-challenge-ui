@@ -29,3 +29,18 @@ export interface ShoppingItemProps {
 }
 
 export type ShoppingItemsProps = ShoppingItemProps[]
+
+export interface FormTournamentProps {
+  name: string
+  desc: string
+  startDate: string
+  endDate: string
+  cost: string
+  videGameId: string
+  topic: string
+  category: string
+  platformStreaming: string
+  costPreSale: string
+  finalPreSale: string
+  costEntrance: string
+}

@@ -1,33 +1,23 @@
 import { Controller, RegisterOptions, useFormContext } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 
-interface FielProps {
+interface FieldTextAreaProps {
   name: string;
   rules?: RegisterOptions;
   autoComplete?: "" | "off" | "on";
-  type?:
-    | "date"
-    | "text"
-    | "password"
-    | "email"
-    | "number"
-    | "tel"
-    | "url"
-    | "search";
   hidden?: boolean;
   placeholder: string;
   label: string;
 }
 
-export default function Field({
+export default function FieldTextArea({
   name = "",
   rules = {},
   autoComplete = "off",
-  type = "text",
   hidden = false,
   placeholder = "",
   label = "",
-}: FielProps) {
+}: FieldTextAreaProps) {
   const methods = useFormContext();
   return (
     <label className="form-control w-full max-w-xs">
@@ -44,7 +34,7 @@ export default function Field({
               <span className="label-text">{label}</span>
               {/* <span className="label-text-alt">Top Right label</span> */}
             </div>
-            <input
+            <textarea
               autoComplete={autoComplete}
               name={name}
               onBlur={onBlur}
@@ -52,10 +42,9 @@ export default function Field({
               ref={ref}
               value={value}
               disabled={disabled}
-              type={type}
               hidden={hidden}
-              placeholder={`${placeholder}${rules.required && "*"}`}
-              className={`input input-bordered w-80 max-w-xs ${
+              placeholder={placeholder}
+              className={`textarea textarea-bordered h-24 w-80 max-w-xs ${
                 formState.errors[name] ? "input-error" : ""
               }`}
             />
