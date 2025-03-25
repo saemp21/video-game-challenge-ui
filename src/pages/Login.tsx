@@ -1,12 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../app/hook";
+// import { useNavigate } from "react-router-dom";
+// import { useAppDispatch } from "../app/hook";
 import { signIn } from "@aws-amplify/auth";
 import "../aws/amplifyConfig";
 
 export default function Login() {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
   return (
     <div className="min-h-screen w-full flex justify-center items-center">
       <div className="flex flex-col justify-center gap-8 items-center">
