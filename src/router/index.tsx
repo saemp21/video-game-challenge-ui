@@ -13,9 +13,23 @@ export const routerArray: RouteObject[] = [
         path: "",
         element: <MainPage />,
       },
+      // {
+      //   path: "login",
+      //   element: <Login />,
+      // },
       {
-        path: "login",
-        element: <Login />,
+        path: "manager",
+        element: <Outlet />,
+        children: [
+          {
+            path: "",
+            element: <>Manager</>,
+          },
+        ],
+      },
+      {
+        path: "validate",
+        children: [],
       },
       {
         path: "shopping",

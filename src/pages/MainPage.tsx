@@ -1,10 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hook";
 import { setTicketType } from "../app/sliceArena";
+import { useAuth } from "react-oidc-context";
 
 export default function MainPage() {
+  const auth = useAuth();
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  if (auth.isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (auth.error) {
+    return <div>Encountering error... {auth.error.message}</div>;
+  }
+
+  if (auth.isAuthenticated) {
+    navigate("/manager");
+  }
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center">
@@ -13,7 +28,9 @@ export default function MainPage() {
         <div className="flex flex-row gap-4">
           <div
             onClick={() => {
-              navigate("/login");
+              auth.signinRedirect({
+                redirect_uri: "https://main.d12rdorbfrxk5.amplifyapp.com/login",
+              });
             }}
             className="border p-4 cursor-pointer hover:bg-slate-100 rounded-lg capitalize font-bold">
             login

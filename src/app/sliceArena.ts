@@ -3,7 +3,10 @@ import { ArenaProps } from "../utils/interface";
 
 const initialState: Partial<ArenaProps> = {
   ticketType: "",
-  tournament: undefined
+  tournament: undefined,
+  id_token: undefined,
+  access_token: undefined,
+  refresh_token: undefined,
 };
 
 export const arenaSlice = createSlice({
@@ -15,18 +18,18 @@ export const arenaSlice = createSlice({
     },
     setResumeDataTournament: (state: Partial<ArenaProps>, action: PayloadAction<ArenaProps[ "tournament" ]>) => {
       state.tournament = action.payload
-    }
-    // increment: (state) => {
-    //   state.perico += 1;
-    // },
-    // setNumber: (state, action) => {
-    //   state.perico = action.payload;
-    // },
+    },
+    setTokens: (state: Partial<ArenaProps>, action: PayloadAction<ArenaProps>) => {
+      state.id_token = action.payload.id_token
+      state.access_token = action.payload.access_token
+      state.refresh_token = action.payload.refresh_token
+    },
   },
 });
 
 export const {
   // increment, setNumber 
   setResumeDataTournament,
-  setTicketType
+  setTicketType,
+  setTokens
 } = arenaSlice.actions;

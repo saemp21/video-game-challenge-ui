@@ -1,6 +1,9 @@
 export interface ArenaProps {
   ticketType: "participant" | "viewer" | "";
   tournament?: Partial<RequestBodyGetATicketProps>
+  id_token?: string;
+  access_token?: string;
+  refresh_token?: string;
 }
 
 export interface FormTicketProps {
