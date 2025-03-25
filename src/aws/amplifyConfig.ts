@@ -1,11 +1,15 @@
 // src/aws/amplifyConfig.ts
-import { Amplify } from '@aws-amplify/core';
+import { Amplify } from 'aws-amplify';
 
 Amplify.configure({
   Auth: {
     Cognito: {
       userPoolId: 'us-east-1_NhNo7vjQ3',
       userPoolClientId: '56smpmo8n7nua9v5fhnsq97jd2',
+      loginWith: {
+        email: true,
+      },
+
     },
   }
 });
