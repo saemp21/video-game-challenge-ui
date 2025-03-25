@@ -38,7 +38,14 @@ export default function Login() {
 
   return (
     <div>
-      <button onClick={() => auth.signinRedirect()}>Sign in</button>
+      <button
+        onClick={() =>
+          auth.signinRedirect({
+            redirect_uri: "https://main.d12rdorbfrxk5.amplifyapp.com/login",
+          })
+        }>
+        Sign in
+      </button>
       <button onClick={() => signOutRedirect()}>Sign out</button>
     </div>
   );
