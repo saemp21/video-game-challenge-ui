@@ -18,7 +18,8 @@ export default function MainPage() {
   }
 
   if (auth.isAuthenticated) {
-    navigate("/manager");
+    console.log(auth.user);
+    // navigate("/manager");
   }
 
   return (
