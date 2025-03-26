@@ -45,7 +45,9 @@ export interface FormTournamentProps {
   fechaFin: string
   valorEntrada: string
   videoJuegoId: string
-  category: string
+  categoriaId: string
+  valorPremio: string
+  plataforma: string
   platStreamingId: string
   tipoStreaming: boolean | string
   subAdministrador1: string

@@ -45,7 +45,8 @@ export default function CreateTournament() {
     fechaFin,
     valorEntrada,
     videoJuegoId,
-    category,
+    categoriaId,
+    valorPremio,
     platStreamingId,
     tipoStreaming,
     subAdministrador1,
@@ -63,7 +64,8 @@ export default function CreateTournament() {
       fechaFin: moment(fechaFin).format("DD/MM/YYYY"),
       valorEntrada,
       videoJuegoId,
-      category,
+      categoriaId,
+      valorPremio,
       platStreamingId,
       tipoStreaming: tipoStreaming === "true" ? true : false,
       subAdministrador1,
@@ -83,7 +85,9 @@ export default function CreateTournament() {
         fechaFin: moment(fechaFin).format("DD/MM/YYYY"),
         valorEntrada,
         videoJuegoId,
-        category,
+        categoriaId,
+        valorPremio,
+        plataforma: "1",
         platStreamingId,
         tipoStreaming: tipoStreaming === "true" ? true : false,
         subAdministrador1,
@@ -241,7 +245,7 @@ export default function CreateTournament() {
                 }}
               /> */}
               <FieldSelect
-                name="category"
+                name="categoriaId"
                 label="Categoría"
                 placeholder="Categoría"
                 options={[
@@ -367,6 +371,22 @@ export default function CreateTournament() {
                   },
                   pattern: {
                     value: regularExp.positiveDecimalNumbers,
+                    message: "Formato numérico invalido",
+                  },
+                }}
+              />
+              <Field
+                name="valorPremio"
+                type="number"
+                label="Valor del premio participante"
+                placeholder="Valor del premio participante"
+                rules={{
+                  required: {
+                    value: true,
+                    message: "Valor del premio participante es requerido",
+                  },
+                  pattern: {
+                    value: regularExp.positiveNumber,
                     message: "Formato numérico invalido",
                   },
                 }}
