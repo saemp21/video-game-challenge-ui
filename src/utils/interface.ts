@@ -44,3 +44,8 @@ export interface FormTournamentProps {
   finalPreSale: string
   costEntrance: string
 }
+
+export interface StatisticFormProps {
+  tournamentDate: string | Date;
+  tournamentStatus: string;
+}

@@ -6,6 +6,7 @@ import Resume from "../pages/Resume";
 import Manager from "../pages/Manager";
 import CreateTournament from "../pages/CreateTournament";
 import Statistics from "../pages/Statistics";
+import StatisticEdit from "../pages/StatisticEdit";
 // import Login from "../pages/Login";
 
 export const routerArray: RouteObject[] = [
@@ -34,7 +35,17 @@ export const routerArray: RouteObject[] = [
           },
           {
             path: "statistics",
-            element: <Statistics />,
+            element: <Outlet />,
+            children: [
+              {
+                path: "",
+                element: <Statistics />,
+              },
+              {
+                path: ":statisticId",
+                element: <StatisticEdit />,
+              },
+            ],
           },
         ],
       },

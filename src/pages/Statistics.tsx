@@ -132,7 +132,12 @@ export default function Statistics() {
                 <div
                   className="border rounded-lg px-4 py-2 hover:bg-slate-200"
                   onClick={() => {
-                    navigate(`/manager/Statistics/${item.id}`);
+                    navigate(`/manager/statistics/${item.id}`, {
+                      state: {
+                        title: item.title,
+                        desc: item.desc,
+                      },
+                    });
                   }}>
                   Editar
                 </div>

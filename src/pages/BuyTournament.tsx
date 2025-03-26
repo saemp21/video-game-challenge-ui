@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Field from "../components/Field";
 import { FormTicketProps } from "../utils/interface";
 import { regularExp } from "../utils/regex";
-import { useBuyTicketMutation } from "../app/services";
+// import { useBuyTicketMutation } from "../app/services";
 import { useAppDispatch } from "../app/hook";
 import { setResumeDataTournament } from "../app/sliceArena";
 
@@ -14,16 +14,16 @@ export default function BuyTournament() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const [
-    // requestFunction,
-    {
-      // data,
-      // isLoading,
-      // isError,
-      //  reset,
-      //  isSuccess
-    },
-  ] = useBuyTicketMutation();
+  // const [
+  // requestFunction,
+  // {
+  // data,
+  // isLoading,
+  // isError,
+  //  reset,
+  //  isSuccess
+  // },
+  // ] = useBuyTicketMutation();
 
   const methods = useForm<FormTicketProps>({
     mode: "all",
