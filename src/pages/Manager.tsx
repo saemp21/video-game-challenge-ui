@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../app/hook";
 
 export default function Manager() {
   const navigate = useNavigate();
+  const stores = useAppSelector((state) => state.arena);
+
+  console.log(stores);
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center">
