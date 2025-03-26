@@ -20,7 +20,7 @@ export const arenaSlice = createSlice({
     setResumeDataTournament: (state: Partial<ArenaProps>, action: PayloadAction<ArenaProps[ "tournament" ]>) => {
       state.tournament = action.payload
     },
-    setTokens: (state: Partial<ArenaProps>, action: PayloadAction<ArenaProps>) => {
+    setTokens: (state: Partial<ArenaProps>, action: PayloadAction<Partial<ArenaProps>>) => {
       state.id_token = action.payload.id_token
       state.access_token = action.payload.access_token
       state.refresh_token = action.payload.refresh_token
