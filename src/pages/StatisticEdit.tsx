@@ -8,7 +8,7 @@ export default function StatisticEdit() {
   const navigate = useNavigate();
   const { statisticId } = useParams();
   const { state } = useLocation();
-  const { title, desc } = state;
+  const { title, desc } = state || { title: "", desc: "" };
 
   console.log(state);
 

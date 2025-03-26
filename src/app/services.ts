@@ -36,7 +36,7 @@ export const service = baseApi.injectEndpoints({
       data: unknown
     }, Partial<RequestBodyGetATicketProps>>({
       query: (body) => ({
-        url: "/buy-ticket",
+        url: "/Prod/Torneo",
         method: "POST",
         body
       })

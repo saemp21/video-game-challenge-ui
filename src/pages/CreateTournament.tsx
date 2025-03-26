@@ -4,27 +4,26 @@ import Field from "../components/Field";
 import FieldTextArea from "../components/FieldTextArea";
 import { FormTournamentProps } from "../utils/interface";
 import { regularExp } from "../utils/regex";
-// import { useBuyTicketMutation } from "../app/services";
+import { useBuyTicketMutation } from "../app/services";
 // import { useAppDispatch } from "../app/hook";
 // import moment from "moment";
 import "moment-timezone";
 import FieldSelect from "../components/FieldSelect";
+import { useEffect } from "react";
+import { useAppSelector } from "../app/hook";
+import moment from "moment";
+import "moment-timezone";
 //Compras navega a lista de torneos (desc, titulo, precio)
 
 export default function CreateTournament() {
   const navigate = useNavigate();
+  const email = useAppSelector((state) => state.arena.profile?.email);
   // const dispatch = useAppDispatch();
 
-  // const [
-  // requestFunction,
-  // {
-  // data,
-  // isLoading,
-  // isError,
-  //  reset,
-  //  isSuccess
-  // },
-  // ] = useBuyTicketMutation();
+  const [
+    requestFunction,
+    // { data, isLoading, isError, reset, isSuccess }
+  ] = useBuyTicketMutation();
 
   const methods = useForm<FormTournamentProps>({
     mode: "all",
@@ -32,60 +31,75 @@ export default function CreateTournament() {
     reValidateMode: "onChange",
   });
 
+  useEffect(() => {
+    methods.reset({
+      valorEntradaVista: "0",
+    });
+  }, []);
+
   const onSubmit = async ({
-    name,
-    desc,
-    startDate,
-    endDate,
-    cost,
-    videGameId,
-    topic,
+    nombre,
+    descripcion,
+    fechaInicio,
+    estado,
+    fechaFin,
+    valorEntrada,
+    videoJuegoId,
     category,
-    platformStreaming,
-    costPreSale,
-    finalPreSale,
-    costEntrance,
+    platStreamingId,
+    tipoStreaming,
+    subAdministrador1,
+    subAdministrador2,
+    porcentajePreventa,
+    preventaFin,
+    valorEntradaVista,
   }: FormTournamentProps) => {
     console.log({
-      name,
-      desc,
-      startDate,
-      endDate,
-      cost,
-      videGameId,
-      topic,
+      organizador: email || "",
+      nombre,
+      descripcion,
+      fechaInicio: moment(fechaInicio).format("MM/DD/YYYY"),
+      estado,
+      fechaFin: moment(fechaFin).format("MM/DD/YYYY"),
+      valorEntrada,
+      videoJuegoId,
       category,
-      platformStreaming,
-      costPreSale,
-      finalPreSale,
-      costEntrance,
+      platStreamingId,
+      tipoStreaming: tipoStreaming === "true" ? true : false,
+      subAdministrador1,
+      subAdministrador2,
+      porcentajePreventa,
+      preventaFin: moment(preventaFin).format("MM/DD/YYYY"),
+      valorEntradaVista,
     });
-
-    // await requestFunction({
-    //   tournamentId,
-    //   name,
-    //   howManyTickets,
-    //   email,
-    //   phoneNumber,
-    //   donate,
-    //   priceTournament
-    // })
-    //   .unwrap()
-    //   .then((response) => {
-    // dispatch(
-    //   setResumeDataTournament({
-    //     tournamentId,
-    //     name,
-    //     howManyTickets,
-    //     email,
-    //     phoneNumber,
-    //     donate,
-    //     priceTournament,
-    //     token: response.data.token,
-    //   })
-    // );
-    //     navigate("/shopping/tournament/resume");
-    //   });
+    // .format('MM/DD/YYYY');
+    await requestFunction({
+      Detail: {
+        organizador: email || "",
+        nombre,
+        descripcion,
+        fechaInicio: moment(fechaInicio).format("MM/DD/YYYY"),
+        estado,
+        fechaFin: moment(fechaFin).format("MM/DD/YYYY"),
+        valorEntrada,
+        videoJuegoId,
+        category,
+        platStreamingId,
+        tipoStreaming: tipoStreaming === "true" ? true : false,
+        subAdministrador1,
+        subAdministrador2,
+        porcentajePreventa,
+        preventaFin: moment(preventaFin).format("MM/DD/YYYY"),
+        valorEntradaVista,
+      },
+      DetailType: "POSTED",
+      Source: "createTorneo",
+    })
+      .unwrap()
+      .then(() => {
+        alert("registrado");
+        // navigate("/shopping/tournament/resume");
+      });
   };
 
   return (
@@ -98,7 +112,7 @@ export default function CreateTournament() {
               className="grid grid-cols-1 gap-x-4 gap-y-2"
               onSubmit={methods.handleSubmit(onSubmit)}>
               <Field
-                name="name"
+                name="nombre"
                 label="Nombre"
                 placeholder="Nombre"
                 rules={{
@@ -113,7 +127,7 @@ export default function CreateTournament() {
                 }}
               />
               <FieldTextArea
-                name="desc"
+                name="descripcion"
                 label="Descripción"
                 placeholder="Descripción"
                 rules={{
@@ -124,7 +138,7 @@ export default function CreateTournament() {
                 }}
               />
               <Field
-                name="startDate"
+                name="fechaInicio"
                 label="Fecha de inicio"
                 type="date"
                 placeholder="Fecha de inicio"
@@ -136,16 +150,16 @@ export default function CreateTournament() {
                 }}
               />
               <FieldSelect
-                name="startDate"
+                name="estado"
                 label="Estado"
                 placeholder="Estado"
                 options={[
                   {
-                    value: "uno",
+                    value: 1,
                     label: "uno",
                   },
                   {
-                    value: "dos",
+                    value: 2,
                     label: "dos",
                   },
                 ]}
@@ -157,7 +171,7 @@ export default function CreateTournament() {
                 }}
               />
               <Field
-                name="endDate"
+                name="fechaFin"
                 label="Fecha de final"
                 type="date"
                 placeholder="Fecha de final"
@@ -169,14 +183,14 @@ export default function CreateTournament() {
                 }}
               />
               <Field
-                name="cost"
+                name="valorEntrada"
                 type="number"
-                label="Valor de entrada"
-                placeholder="Valor de entrada"
+                label="Valor de entrada participante"
+                placeholder="Valor de entrada participante"
                 rules={{
                   required: {
                     value: true,
-                    message: "Valor de entrada es requerido",
+                    message: "Valor de entrada participante es requerido",
                   },
                   pattern: {
                     value: regularExp.positiveNumber,
@@ -185,16 +199,16 @@ export default function CreateTournament() {
                 }}
               />
               <FieldSelect
-                name="videGameId"
+                name="videoJuegoId"
                 label="Juego"
                 placeholder="Juego"
                 options={[
                   {
-                    value: "uno",
+                    value: "1",
                     label: "uno",
                   },
                   {
-                    value: "dos",
+                    value: "2",
                     label: "dos",
                   },
                 ]}
@@ -205,7 +219,7 @@ export default function CreateTournament() {
                   },
                 }}
               />
-              <FieldSelect
+              {/* <FieldSelect
                 name="topic"
                 label="Tema"
                 placeholder="Tema"
@@ -225,19 +239,19 @@ export default function CreateTournament() {
                     message: "Tema es requerido",
                   },
                 }}
-              />
+              /> */}
               <FieldSelect
                 name="category"
                 label="Categoría"
                 placeholder="Categoría"
                 options={[
                   {
-                    value: "uno",
-                    label: "uno",
+                    value: "16",
+                    label: "16",
                   },
                   {
-                    value: "dos",
-                    label: "dos",
+                    value: "32",
+                    label: "32",
                   },
                 ]}
                 rules={{
@@ -248,17 +262,17 @@ export default function CreateTournament() {
                 }}
               />
               <FieldSelect
-                name="platformStreaming"
+                name="platStreamingId"
                 label="Plataforma Stream"
                 placeholder="Plataforma Stream"
                 options={[
                   {
-                    value: "uno",
-                    label: "uno",
+                    value: "1",
+                    label: "Twitch",
                   },
                   {
-                    value: "dos",
-                    label: "dos",
+                    value: "2",
+                    label: "YouTube",
                   },
                 ]}
                 rules={{
@@ -268,8 +282,53 @@ export default function CreateTournament() {
                   },
                 }}
               />
+              <FieldSelect
+                name="tipoStreaming"
+                label="Tipo de Stream"
+                placeholder="Tipo de Stream"
+                options={[
+                  {
+                    value: "false",
+                    label: "Gratuito",
+                  },
+                  {
+                    value: "true",
+                    label: "Pago",
+                  },
+                ]}
+                rules={{
+                  required: {
+                    value: true,
+                    message: "Tipo de Stream es requerido",
+                  },
+                }}
+              />
               <Field
-                name="costPreSale"
+                name="subAdministrador1"
+                type="email"
+                label="Sub-Administrador 1"
+                placeholder="Sub-Administrador 1"
+                rules={{
+                  pattern: {
+                    value: regularExp.email,
+                    message: "Formato de correo invalido",
+                  },
+                }}
+              />
+              <Field
+                name="subAdministrador2"
+                type="email"
+                label="Sub-Administrador 2"
+                placeholder="Sub-Administrador 2"
+                rules={{
+                  pattern: {
+                    value: regularExp.email,
+                    message: "Formato de correo invalido",
+                  },
+                }}
+              />
+              <Field
+                name="porcentajePreventa"
                 type="number"
                 label="Porcentaje de pre-venta"
                 placeholder="Porcentaje de pre-venta"
@@ -285,7 +344,7 @@ export default function CreateTournament() {
                 }}
               />
               <Field
-                name="finalPreSale"
+                name="preventaFin"
                 type="date"
                 label="Finalización de pre venta"
                 placeholder="Finalización de pre venta"
@@ -297,14 +356,14 @@ export default function CreateTournament() {
                 }}
               />
               <Field
-                name="costEntrance"
+                name="valorEntradaVista"
                 type="number"
-                label="Porcentaje de pre-venta"
-                placeholder="Porcentaje de pre-venta"
+                label="Valor entrada espectador"
+                placeholder="Valor entrada espectador"
                 rules={{
                   required: {
                     value: true,
-                    message: "Porcentaje de pre-venta es requerido",
+                    message: "Valor entrada espectador es requerido",
                   },
                   pattern: {
                     value: regularExp.positiveDecimalNumbers,
@@ -348,7 +407,7 @@ export default function CreateTournament() {
                   <button
                     disabled={!methods.formState.isValid}
                     className="disabled:bg-slate-300 px-4 py-2 border hover:opacity-85 bg-green-400">
-                    Comprar
+                    Crear
                   </button>
                 </>
                 {/*  )} */}

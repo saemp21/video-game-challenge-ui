@@ -7,6 +7,7 @@ const initialState: Partial<ArenaProps> = {
   id_token: undefined,
   access_token: undefined,
   refresh_token: undefined,
+  profile: undefined,
 };
 
 export const arenaSlice = createSlice({
@@ -24,6 +25,9 @@ export const arenaSlice = createSlice({
       state.access_token = action.payload.access_token
       state.refresh_token = action.payload.refresh_token
     },
+    setProfile: (state: Partial<ArenaProps>, action: PayloadAction<ArenaProps[ "profile" ]>) => {
+      state.profile = action.payload
+    },
   },
 });
 
@@ -31,5 +35,6 @@ export const {
   // increment, setNumber 
   setResumeDataTournament,
   setTicketType,
-  setTokens
+  setTokens,
+  setProfile
 } = arenaSlice.actions;

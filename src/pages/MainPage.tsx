@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../app/hook";
-import { setTicketType } from "../app/sliceArena";
+import { setProfile, setTicketType } from "../app/sliceArena";
 import { useAuth } from "react-oidc-context";
 
 export default function MainPage() {
@@ -18,8 +18,12 @@ export default function MainPage() {
   }
 
   if (auth.isAuthenticated) {
-    console.log(auth.user);
-    // navigate("/manager");
+    dispatch(
+      setProfile({
+        email: auth.user?.profile.email,
+      })
+    );
+    navigate("/manager");
   }
 
   return (

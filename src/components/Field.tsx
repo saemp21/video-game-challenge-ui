@@ -54,7 +54,7 @@ export default function Field({
               disabled={disabled}
               type={type}
               hidden={hidden}
-              placeholder={`${placeholder}${rules.required && "*"}`}
+              placeholder={`${placeholder}${rules.required ? "*" : ""}`}
               className={`input input-bordered w-80 max-w-xs ${
                 formState.errors[name] ? "input-error" : ""
               }`}
