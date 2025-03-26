@@ -58,9 +58,9 @@ export default function CreateTournament() {
       organizador: email || "",
       nombre,
       descripcion,
-      fechaInicio: moment(fechaInicio).format("MM/DD/YYYY"),
+      fechaInicio: moment(fechaInicio).format("DD/MM/YYYY"),
       estado,
-      fechaFin: moment(fechaFin).format("MM/DD/YYYY"),
+      fechaFin: moment(fechaFin).format("DD/MM/YYYY"),
       valorEntrada,
       videoJuegoId,
       category,
@@ -69,7 +69,7 @@ export default function CreateTournament() {
       subAdministrador1,
       subAdministrador2,
       porcentajePreventa,
-      preventaFin: moment(preventaFin).format("MM/DD/YYYY"),
+      preventaFin: moment(preventaFin).format("DD/MM/YYYY"),
       valorEntradaVista,
     });
     // .format('MM/DD/YYYY');
@@ -78,9 +78,9 @@ export default function CreateTournament() {
         organizador: email || "",
         nombre,
         descripcion,
-        fechaInicio: moment(fechaInicio).format("MM/DD/YYYY"),
+        fechaInicio: moment(fechaInicio).format("DD/MM/YYYY"),
         estado,
-        fechaFin: moment(fechaFin).format("MM/DD/YYYY"),
+        fechaFin: moment(fechaFin).format("DD/MM/YYYY"),
         valorEntrada,
         videoJuegoId,
         category,
@@ -89,11 +89,11 @@ export default function CreateTournament() {
         subAdministrador1,
         subAdministrador2,
         porcentajePreventa,
-        preventaFin: moment(preventaFin).format("MM/DD/YYYY"),
+        preventaFin: moment(preventaFin).format("DD/MM/YYYY"),
         valorEntradaVista,
       },
       DetailType: "POSTED",
-      Source: "createTorneo",
+      Source: "crearTorneo",
     })
       .unwrap()
       .then(() => {
