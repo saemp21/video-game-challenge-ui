@@ -21,13 +21,16 @@ export default function Verified({ verified }: { verified: "si" | "no" }) {
             <>
               <img
                 className="w-80"
-                src="3e655000daafe3818aacf2f20124510c.jpg"
+                src="/public/3e655000daafe3818aacf2f20124510c.jpg"
               />
               <p>Estas verificado</p>
             </>
           ) : (
             <>
-              <img className="w-80" src="3e655000daafe3818aacgw84w43510c.jpg" />
+              <img
+                className="w-80"
+                src="/public/3e655000daafe3818aacgw84w43510c.jpg"
+              />
               <p>No estas verificado</p>
             </>
           )}
