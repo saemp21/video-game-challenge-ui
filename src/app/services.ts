@@ -21,7 +21,7 @@ export const service = baseApi.injectEndpoints({
     // }),
     getAllTournaments: build.mutation<GetAllTournamentSuccessResponse, GetAllTournamentBodyRequest>({
       query: (body) => ({
-        url: "/Prod/torneoLista",
+        url: "/Prod/torneoLista/organizador",
         method: "POST",
         body
       })
