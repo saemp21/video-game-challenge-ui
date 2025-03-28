@@ -8,6 +8,15 @@ export default function Manager() {
   const navigate = useNavigate();
   const stores = useAppSelector((state) => state.arena);
 
+  const signOutRedirect = () => {
+    const clientId = "7mqoe47nd4eht0hjo882qs4hqq";
+    const logoutUri = "<logout uri>";
+    const cognitoDomain =
+      "https://videogamecogpcc.auth.us-east-1.amazoncognito.com";
+    window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(
+      logoutUri
+    )}`;
+  };
   console.log(stores);
 
   return (
@@ -32,6 +41,7 @@ export default function Manager() {
           <div
             onClick={() => {
               auth.removeUser();
+              signOutRedirect();
             }}
             className="border p-4 cursor-pointer hover:bg-slate-100 rounded-lg capitalize font-bold">
             Salir
