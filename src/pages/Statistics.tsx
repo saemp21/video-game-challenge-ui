@@ -55,14 +55,15 @@ export default function Statistics() {
           {/* {isSuccess &&
             data.data.map((item, index) => ( */}
           {data &&
+            (data?.torneos || [])?.length > 0 &&
             data.torneos.map((item, index) => (
               <div
                 className="cursor-pointer rounded-lg border p-4 gap-4 flex flex-col hover:bg-slate-50"
                 key={index}>
                 <div className="flex flex-col">
-                  <p className=" font-semibold text-xl">{item.nombre}</p>
-                  <p className="">{item.ganancias}</p>
-                  <p className="">{item.donaciones}</p>
+                  <p className=" font-semibold text-xl">{item?.nombre}</p>
+                  <p className="">{item?.ganancias}</p>
+                  <p className="">{item?.donaciones}</p>
                 </div>
               </div>
             ))}

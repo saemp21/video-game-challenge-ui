@@ -70,26 +70,29 @@ export default function Shopping() {
           {/* {isSuccess &&
             data.data.map((item, index) => ( */}
           {data &&
+            (data?.torneos || [])?.length > 0 &&
             data.torneos.map((item, index) => (
               <div
                 onClick={() => {
-                  navigate(`/shopping/tournament/${item.id}/${item.id}`);
+                  navigate(
+                    `/shopping/tournament/${item?.id}/${item?.valorEntrada}`
+                  );
                 }}
                 className="cursor-pointer rounded-lg border p-4 gap-4 flex flex-col hover:bg-slate-100"
                 key={index}>
                 <div className="flex flex-col">
-                  <p className=" font-semibold text-xl">{item.nombre}</p>
-                  <p className="">{item.descripcion}</p>
+                  <p className=" font-semibold text-xl">{item?.nombre}</p>
+                  <p className="">{item?.descripcion}</p>
                 </div>
                 <div className="flex w-full flex-row gap-2  items-center  justify-end">
-                  <p className="">${item.valorEntrada}</p>
+                  <p className="">${item?.valorEntrada}</p>
                   <p
                     className={`rounded-xl px-4 py-2 ${
-                      item.estado === 1
+                      item?.estado === 1
                         ? "text-white bg-green-500"
                         : "text-white bg-red-500"
                     }`}>
-                    {item.estado === 1 ? "Activo" : "Inactivo"}
+                    {item?.estado === 1 ? "Activo" : "Inactivo"}
                   </p>
                 </div>
               </div>
