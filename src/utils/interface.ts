@@ -30,11 +30,20 @@ export interface RequestBodyGetATicketProps {
 }
 
 export interface ShoppingItemProps {
-  id: string;
-  title: string;
-  desc: string;
-  price: number;
-  paid: boolean;
+  statusCode: number
+  headers: {
+    "Access-Control-Allow-Origin": string
+  }
+  torneos: Array<{
+    id: string
+    nombre: string
+    descripcion: string
+    valorEntrada: number
+    valorEntradaVista: number
+    fechaInicio: string
+    fpreventafin: string
+    estado: number
+  }>
 }
 
 export type ShoppingItemsProps = ShoppingItemProps[]

@@ -1,4 +1,4 @@
-import { ArenaProps, EnterEventBodyRequest, EnterEventSuccessResponse, FormSellProps, FormTournamentProps, FormTournamentSuccessResponse, SellSuccessResponse, ShoppingItemsProps } from "../utils/interface";
+import { EnterEventBodyRequest, EnterEventSuccessResponse, FormSellProps, FormTournamentProps, FormTournamentSuccessResponse, SellSuccessResponse, ShoppingItemProps } from "../utils/interface";
 import { baseApi } from "./api";
 
 export const service = baseApi.injectEndpoints({
@@ -33,13 +33,9 @@ export const service = baseApi.injectEndpoints({
         body
       })
     }),
-    getAllTickets: build.mutation<{
-      code: number;
-      message: string;
-      data: ShoppingItemsProps
-    }, Partial<ArenaProps>>({
+    getAllTickets: build.mutation<ShoppingItemProps, void>({
       query: (body) => ({
-        url: "/ticket-list",
+        url: "/Prod/torneoLista",
         method: "POST",
         body
       })
