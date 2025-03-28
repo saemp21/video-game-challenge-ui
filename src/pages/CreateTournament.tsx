@@ -33,7 +33,7 @@ export default function CreateTournament() {
 
   useEffect(() => {
     methods.reset({
-      valorEntradaVista: "0",
+      valorEntradaVista: 0,
     });
   }, []);
 
@@ -76,28 +76,24 @@ export default function CreateTournament() {
     });
     // .format('MM/DD/YYYY');
     await requestFunction({
-      Detail: {
-        organizador: email || "",
-        nombre,
-        descripcion,
-        fechaInicio: moment(fechaInicio).format("DD/MM/YYYY"),
-        estado,
-        fechaFin: moment(fechaFin).format("DD/MM/YYYY"),
-        valorEntrada,
-        videoJuegoId,
-        categoriaId,
-        valorPremio,
-        plataforma: "1",
-        platStreamingId,
-        tipoStreaming: tipoStreaming === "true" ? true : false,
-        subAdministrador1,
-        subAdministrador2,
-        porcentajePreventa,
-        preventaFin: moment(preventaFin).format("DD/MM/YYYY"),
-        valorEntradaVista,
-      },
-      DetailType: "POSTED",
-      Source: "crearTorneo",
+      nombre,
+      descripcion,
+      fechaInicio: moment(fechaInicio).format("DD/MM/YYYY"),
+      estado,
+      fechaFin: moment(fechaFin).format("DD/MM/YYYY"),
+      valorEntrada,
+      videoJuegoId,
+      categoriaId,
+      valorPremio,
+      platStreamingId,
+      tipoStreaming: tipoStreaming === "true" ? true : false,
+      subAdministrador1,
+      subAdministrador2,
+      porcentajePreventa,
+      plataformaId: platStreamingId,
+      preventaFin: moment(preventaFin).format("DD/MM/YYYY"),
+      valorEntradaVista,
+      organizador: email || "",
     })
       .unwrap()
       .then(() => {

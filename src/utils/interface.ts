@@ -39,25 +39,50 @@ export interface ShoppingItemProps {
 
 export type ShoppingItemsProps = ShoppingItemProps[]
 
+
+export interface FormTournamentSuccessResponse {
+  message: string
+  data: {
+    organizador: string
+    nombre: string
+    descripcion: string
+    fecha_inicio: string
+    fecha_fin: string
+    valor_entrada: number
+    video_juego_id: number
+    plataforma_id: string
+    sub_administrador1: string
+    sub_administrador2: string
+    valor_premio: number
+    categoria_id: string
+    plat_streaming_id: string
+    tipo_streaming: boolean
+    porcentaje_preventa: number
+    preventa_fin: string
+    valor_entrada_vista: number
+    topic_id: string
+  }
+}
 export interface FormTournamentProps {
-  organizador: string
+  estado: string
   nombre: string
   descripcion: string
   fechaInicio: string
-  estado: string
   fechaFin: string
   valorEntrada: string
   videoJuegoId: string
-  categoriaId: string
-  valorPremio: string
   plataforma: string
-  platStreamingId: string
-  tipoStreaming: boolean | string
   subAdministrador1: string
   subAdministrador2: string
-  porcentajePreventa: string
+  valorPremio: number
+  categoriaId: string
+  platStreamingId: string
+  tipoStreaming: string | boolean
+  porcentajePreventa: number
   preventaFin: string
-  valorEntradaVista: string
+  valorEntradaVista: number
+  plataformaId: string
+  organizador: string
 }
 
 export interface StatisticFormProps {
