@@ -1,4 +1,4 @@
-import { EnterEventBodyRequest, EnterEventSuccessResponse, FormSellProps, FormTournamentProps, FormTournamentSuccessResponse, GetAllTournamentBodyRequest, GetAllTournamentSuccessResponse, SellSuccessResponse, ShoppingItemProps } from "../utils/interface";
+import { EnterEventBodyRequest, EnterEventSuccessResponse, FormSellProps, FormTournamentProps, FormTournamentSuccessResponse, GetAllTournamentBodyRequest, GetAllTournamentSuccessResponse, GetStatiscsSuccesResponse, SellSuccessResponse, ShoppingItemProps } from "../utils/interface";
 import { baseApi } from "./api";
 
 export const service = baseApi.injectEndpoints({
@@ -19,6 +19,13 @@ export const service = baseApi.injectEndpoints({
     //     body,
     //   }),
     // }),
+    getStatiscs: build.mutation<GetStatiscsSuccesResponse[], GetAllTournamentBodyRequest>({
+      query: (body) => ({
+        url: "/Prod/ventaTiquete",
+        method: "POST",
+        body
+      })
+    }),
     getAllTournaments: build.mutation<GetAllTournamentSuccessResponse, GetAllTournamentBodyRequest>({
       query: (body) => ({
         url: "/Prod/torneoLista/organizador",
@@ -57,7 +64,7 @@ export const service = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAllTournamentsMutation, useGetAllTicketsQuery, useBuyTicketMutation, useSellTicketMutation, useEnterEventMutation } = service;
+export const { useGetStatiscsMutation, useGetAllTournamentsMutation, useGetAllTicketsQuery, useBuyTicketMutation, useSellTicketMutation, useEnterEventMutation } = service;
 
 
 //Compras navega a lista de torneos (desc, titulo, precio)

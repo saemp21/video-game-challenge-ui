@@ -125,6 +125,7 @@ export interface SellSuccessResponse {
 }
 
 
+
 export interface EnterEventSuccessResponse {
   message: string
   data: unknown
@@ -156,4 +157,10 @@ export interface GetAllTournamentSuccessResponse {
 
 export interface GetAllTournamentBodyRequest {
   correo: string
+}
+
+export interface GetStatiscsSuccesResponse {
+  nombre: string
+  ganancias: string
+  donaciones: string
 }
