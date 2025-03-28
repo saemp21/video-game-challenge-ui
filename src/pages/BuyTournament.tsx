@@ -16,8 +16,7 @@ export default function BuyTournament() {
   const dispatch = useAppDispatch();
   const tournamentType = useAppSelector((state) => state.arena.ticketType);
 
-  const [requestFunction, { data, isLoading, isError, reset, isSuccess }] =
-    useSellTicketMutation();
+  const [requestFunction, { isError }] = useSellTicketMutation();
 
   const methods = useForm<FormTicketProps>({
     mode: "all",
