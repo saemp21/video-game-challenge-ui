@@ -45,7 +45,7 @@ export default function Shopping() {
         {isError && (
           <p>Se ha presentado un error al consultar la lista de boletas</p>
         )}
-        {!isLoading && (
+        {isLoading && (
           <>
             <svg
               className="animate-spin -ml-1 mr-3 h-5 w-5 text-black"
