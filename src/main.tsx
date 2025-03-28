@@ -10,8 +10,8 @@ import "./index.css";
 import { AuthProvider } from "react-oidc-context";
 
 const cognitoAuthConfig = {
-  authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_NhNo7vjQ3",
-  client_id: "4hp7381eop37pot6umlk5lsek5",
+  authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_5gHWagiMu",
+  client_id: "7mqoe47nd4eht0hjo882qs4hqq",
   redirect_uri: "https://d84l1y8p4kdic.cloudfront.net",
   response_type: "code",
   scope: "aws.cognito.signin.user.admin openid",

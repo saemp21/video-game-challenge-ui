@@ -6,7 +6,7 @@ export default function Login() {
   const auth = useAuth();
 
   const signOutRedirect = () => {
-    const clientId = "4hp7381eop37pot6umlk5lsek5";
+    const clientId = "7mqoe47nd4eht0hjo882qs4hqq";
     const logoutUri = "<logout uri>";
     const cognitoDomain =
       "https://videogamecogpcc.auth.us-east-1.amazoncognito.com";
