@@ -33,10 +33,10 @@ export const service = baseApi.injectEndpoints({
         body
       })
     }),
-    getAllTickets: build.mutation<ShoppingItemProps, void>({
+    getAllTickets: build.query<ShoppingItemProps, void>({
       query: (body) => ({
         url: "/Prod/torneoLista",
-        method: "POST",
+        method: "GET",
         body
       })
     }),
@@ -50,7 +50,7 @@ export const service = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAllTicketsMutation, useBuyTicketMutation, useSellTicketMutation, useEnterEventMutation } = service;
+export const { useGetAllTicketsQuery, useBuyTicketMutation, useSellTicketMutation, useEnterEventMutation } = service;
 
 
 //Compras navega a lista de torneos (desc, titulo, precio)

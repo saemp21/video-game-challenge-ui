@@ -1,33 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { useGetAllTicketsMutation } from "../app/services";
+import { useGetAllTicketsQuery } from "../app/services";
 import { useEffect } from "react";
-import { useAppSelector } from "../app/hook";
-
-//Compras navega a lista de torneos (desc, titulo, precio)
 
 export default function Shopping() {
   const navigate = useNavigate();
-  const ticketType = useAppSelector((state) => state.arena.ticketType);
 
-  const [
-    requestFunction,
-    {
-      data,
-      isLoading,
-      isError,
-      reset,
-      //  isSuccess
-    },
-  ] = useGetAllTicketsMutation();
+  const {
+    data,
+    isLoading,
+    isError,
+    refetch,
+    //  isSuccess
+  } = useGetAllTicketsQuery();
 
   useEffect(() => {
-    const runService = async () => {
-      await requestFunction().unwrap();
-    };
-
-    reset();
-    runService();
-  }, [ticketType]);
+    refetch();
+  }, []);
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center p-7">
