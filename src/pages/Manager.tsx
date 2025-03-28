@@ -10,7 +10,7 @@ export default function Manager() {
 
   const signOutRedirect = () => {
     const clientId = "7mqoe47nd4eht0hjo882qs4hqq";
-    const logoutUri = "<logout uri>";
+    const logoutUri = "https://main.d12rdorbfrxk5.amplifyapp.com";
     const cognitoDomain =
       "https://videogamecogpcc.auth.us-east-1.amazoncognito.com";
     window.location.href = `${cognitoDomain}/logout?client_id=${clientId}&logout_uri=${encodeURIComponent(
