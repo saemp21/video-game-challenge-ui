@@ -18,7 +18,7 @@ export default function Statistics() {
 
   useEffect(() => {
     runRequest();
-  });
+  }, []);
   return (
     <div className="min-h-screen w-full flex justify-center items-center p-7">
       <div className="flex flex-col justify-center gap-8 items-center">
