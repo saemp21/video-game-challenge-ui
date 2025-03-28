@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../app/hook";
-import { useAuth } from "react-oidc-context";
+// import { useAuth } from "react-oidc-context";
 
 export default function Manager() {
-  const auth = useAuth();
+  // const auth = useAuth();
 
   const navigate = useNavigate();
   const stores = useAppSelector((state) => state.arena);
@@ -40,7 +40,7 @@ export default function Manager() {
           </div>
           <div
             onClick={() => {
-              auth.removeUser();
+              // auth.removeUser();
               signOutRedirect();
             }}
             className="border p-4 cursor-pointer hover:bg-slate-100 rounded-lg capitalize font-bold">
