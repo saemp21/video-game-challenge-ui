@@ -1,4 +1,4 @@
-import { ArenaProps, RequestBodyGetATicketProps, ShoppingItemsProps } from "../utils/interface";
+import { ArenaProps, FormSellProps, RequestBodyGetATicketProps, SellSuccessResponse, ShoppingItemsProps } from "../utils/interface";
 import { baseApi } from "./api";
 
 export const service = baseApi.injectEndpoints({
@@ -19,6 +19,13 @@ export const service = baseApi.injectEndpoints({
     //     body,
     //   }),
     // }),
+    sellTicket: build.mutation<SellSuccessResponse, FormSellProps>({
+      query: (body) => ({
+        url: "/Prod/ventaTiquete",
+        method: "POST",
+        body
+      })
+    }),
     getAllTickets: build.mutation<{
       code: number;
       message: string;
@@ -44,7 +51,7 @@ export const service = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAllTicketsMutation, useBuyTicketMutation } = service;
+export const { useGetAllTicketsMutation, useBuyTicketMutation, useSellTicketMutation } = service;
 
 
 //Compras navega a lista de torneos (desc, titulo, precio)

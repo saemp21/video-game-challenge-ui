@@ -3,9 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import Field from "../components/Field";
 import { FormTicketProps } from "../utils/interface";
 import { regularExp } from "../utils/regex";
-// import { useBuyTicketMutation } from "../app/services";
-import { useAppDispatch } from "../app/hook";
+import { useSellTicketMutation } from "../app/services";
+import { useAppDispatch, useAppSelector } from "../app/hook";
 import { setResumeDataTournament } from "../app/sliceArena";
+import { useEffect } from "react";
 
 //Compras navega a lista de torneos (desc, titulo, precio)
 
@@ -13,17 +14,10 @@ export default function BuyTournament() {
   const { tournamentId, priceTournament } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const tournamentType = useAppSelector((state) => state.arena.ticketType);
 
-  // const [
-  // requestFunction,
-  // {
-  // data,
-  // isLoading,
-  // isError,
-  //  reset,
-  //  isSuccess
-  // },
-  // ] = useBuyTicketMutation();
+  const [requestFunction, { data, isLoading, isError, reset, isSuccess }] =
+    useSellTicketMutation();
 
   const methods = useForm<FormTicketProps>({
     mode: "all",
@@ -37,41 +31,20 @@ export default function BuyTournament() {
     email,
     phoneNumber,
     donate,
-  }: Partial<FormTicketProps>) => {
+  }: FormTicketProps) => {
+    const torneo_id: string = tournamentId as string;
+
     console.log({
-      tournamentId,
-      name,
-      howManyTickets,
-      email,
-      phoneNumber,
-      donate,
-      priceTournament,
+      torneo_id,
+      correo: email,
+      numero_telefono: phoneNumber,
+      donacion: Number(donate || 0),
+      esEspectador: tournamentType === "viewer",
+      numero_entradas: howManyTickets,
+      costo_boleta: Number(priceTournament),
+      nombre: name,
     });
 
-    dispatch(
-      setResumeDataTournament({
-        tournamentId,
-        name,
-        howManyTickets,
-        email,
-        phoneNumber,
-        donate,
-        priceTournament,
-        token: "perikos",
-      })
-    );
-
-    // await requestFunction({
-    //   tournamentId,
-    //   name,
-    //   howManyTickets,
-    //   email,
-    //   phoneNumber,
-    //   donate,
-    //   priceTournament
-    // })
-    //   .unwrap()
-    //   .then((response) => {
     // dispatch(
     //   setResumeDataTournament({
     //     tournamentId,
@@ -81,14 +54,46 @@ export default function BuyTournament() {
     //     phoneNumber,
     //     donate,
     //     priceTournament,
-    //     token: response.data.token,
+    //     token: "perikos",
     //   })
     // );
-    //     navigate("/shopping/tournament/resume");
-    //   });
 
-    navigate("/shopping/tournament/resume");
+    await requestFunction({
+      torneo_id,
+      correo: email,
+      numero_telefono: phoneNumber,
+      donacion: Number(donate || 0),
+      esEspectador: tournamentType === "viewer",
+      numero_entradas: howManyTickets,
+      costo_boleta: Number(priceTournament),
+      nombre: name,
+    })
+      .unwrap()
+      .then((response) => {
+        dispatch(
+          setResumeDataTournament({
+            tournamentId: response.data.tiquete_id,
+            transaccion_id: response.data.tiquete_id,
+            token_id: response.data.tiquete_id,
+            name: response.data.nombre,
+            howManyTickets,
+            email: response.data.correo,
+            phoneNumber,
+            donate: response.data.precio.toString(),
+            priceTournament: response.data.precio.toString(),
+          })
+        );
+        navigate("/shopping/tournament/resume");
+      });
+
+    // navigate("/shopping/tournament/resume");
   };
+
+  useEffect(() => {
+    if (isError) {
+      alert("Ocurrio un error al comprar la boleta");
+    }
+  }, [isError]);
 
   return (
     <div className="min-h-screen w-full flex justify-center items-center p-7">

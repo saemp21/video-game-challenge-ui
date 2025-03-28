@@ -12,9 +12,12 @@ export interface ArenaProps {
 export interface FormTicketProps {
   tournamentId: string
   name: string
-  howManyTickets: number
   email: string
+  tiquete_id?: string
+  transaccion_id?: string
+  token_id?: string
   phoneNumber: string
+  howManyTickets: number
   donate: string
   priceTournament: string
   token: string
@@ -60,4 +63,29 @@ export interface FormTournamentProps {
 export interface StatisticFormProps {
   tournamentDate: string | Date;
   tournamentStatus: string;
+}
+
+export interface FormSellProps {
+  torneo_id: string
+  correo: string
+  numero_telefono: string
+  donacion: number
+  esEspectador: boolean
+  numero_entradas: number
+  costo_boleta: number
+  nombre: string
+}
+
+export interface SellSuccessResponse {
+  message: string
+  data: {
+    nombre: string
+    correo: string
+    tiquete_id: string
+    transaccion_id: string
+    token_id: string
+    donacion: number
+    precio: number
+    total: number
+  }
 }

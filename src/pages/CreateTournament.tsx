@@ -22,7 +22,7 @@ export default function CreateTournament() {
 
   const [
     requestFunction,
-    // { data, isLoading, isError, reset, isSuccess }
+    //  { data, isLoading, isError, reset, isSuccess }
   ] = useBuyTicketMutation();
 
   const methods = useForm<FormTournamentProps>({
