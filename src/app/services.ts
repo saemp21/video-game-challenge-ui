@@ -19,9 +19,9 @@ export const service = baseApi.injectEndpoints({
     //     body,
     //   }),
     // }),
-    getStatiscs: build.mutation<GetStatiscsSuccesResponse[], GetAllTournamentBodyRequest>({
+    getStatiscs: build.mutation<GetStatiscsSuccesResponse, GetAllTournamentBodyRequest>({
       query: (body) => ({
-        url: "/Prod/ventaTiquete",
+        url: "/Prod/monitoreo",
         method: "POST",
         body
       })

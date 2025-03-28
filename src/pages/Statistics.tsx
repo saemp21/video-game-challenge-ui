@@ -28,7 +28,7 @@ export default function Statistics() {
           {/* {isSuccess &&
             data.data.map((item, index) => ( */}
           {data &&
-            data.map((item, index) => (
+            data.torneos.map((item, index) => (
               <div
                 className="cursor-pointer rounded-lg border p-4 gap-4 flex flex-col hover:bg-slate-50"
                 key={index}>

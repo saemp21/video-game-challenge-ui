@@ -160,7 +160,14 @@ export interface GetAllTournamentBodyRequest {
 }
 
 export interface GetStatiscsSuccesResponse {
-  nombre: string
-  ganancias: string
-  donaciones: string
+  statusCode: number
+  headers: {
+    "Access-Control-Allow-Origin": string
+  }
+  torneos: Array<{
+    torneo_id: string
+    nombre: string
+    ganancias: string
+    donaciones: string
+  }>
 }
