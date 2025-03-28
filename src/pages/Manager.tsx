@@ -61,7 +61,7 @@ export default function Manager() {
             Salir
           </div>
         </div>
-        <div className="flex flex-row gap-4">
+        <div className="flex flex-col gap-4">
           {isError && (
             <p>Se ha presentado un error al consultar la lista de boletas</p>
           )}
