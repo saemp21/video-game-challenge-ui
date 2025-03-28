@@ -20,9 +20,21 @@ export default function EventForm() {
 
     await requestFunction({ correo, token })
       .unwrap()
-      .then(() => {})
+      .then((response) => {
+        if (response?.verificado === "si") {
+          navigate("/event/success");
+        }
+        if (response?.verificado === "si") {
+          navigate("/event/failed");
+        }
+      })
       .catch((error) => {
-        alert(error);
+        alert(
+          JSON.stringify({
+            error,
+            message: "Ocurrió un error al ejecutar el servicio",
+          })
+        );
       });
   };
   return (

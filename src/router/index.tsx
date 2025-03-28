@@ -8,6 +8,7 @@ import CreateTournament from "../pages/CreateTournament";
 import Statistics from "../pages/Statistics";
 import StatisticEdit from "../pages/StatisticEdit";
 import EventForm from "../pages/EventForm";
+import Verified from "../pages/Verified";
 // import Login from "../pages/Login";
 
 export const routerArray: RouteObject[] = [
@@ -25,6 +26,14 @@ export const routerArray: RouteObject[] = [
           {
             path: "",
             element: <EventForm />,
+          },
+          {
+            path: "success",
+            element: <Verified verified="si" />,
+          },
+          {
+            path: "failed",
+            element: <Verified verified="no" />,
           },
         ],
       },

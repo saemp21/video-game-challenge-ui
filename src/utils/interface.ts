@@ -128,8 +128,7 @@ export interface SellSuccessResponse {
 
 export interface EnterEventSuccessResponse {
   message: string
-  data: unknown
-
+  verificado: "si" | "no"
 }
 
 export interface EnterEventBodyRequest {
