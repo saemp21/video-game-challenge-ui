@@ -246,11 +246,11 @@ export default function CreateTournament() {
                 placeholder="Categoría"
                 options={[
                   {
-                    value: "16",
+                    value: "1",
                     label: "16",
                   },
                   {
-                    value: "32",
+                    value: "2",
                     label: "32",
                   },
                 ]}
