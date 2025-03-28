@@ -35,7 +35,7 @@ export const service = baseApi.injectEndpoints({
     }),
     enterEvent: build.mutation<EnterEventSuccessResponse, EnterEventBodyRequest>({
       query: (body) => ({
-        url: "/Prod/ventaTiquete",
+        url: "/Prod/token",
         method: "POST",
         body
       })

@@ -134,7 +134,7 @@ export interface EnterEventSuccessResponse {
 
 export interface EnterEventBodyRequest {
   correo: string
-  eventoId: string
+  token: string
 }
 
 export interface GetAllTournamentSuccessResponse {

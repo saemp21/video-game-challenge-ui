@@ -15,10 +15,10 @@ export default function EventForm() {
     reValidateMode: "onChange",
   });
 
-  const onSubmit = async ({ correo, eventoId }: EnterEventBodyRequest) => {
-    console.log({ correo, eventoId });
+  const onSubmit = async ({ correo, token }: EnterEventBodyRequest) => {
+    console.log({ correo, token });
 
-    await requestFunction({ correo, eventoId })
+    await requestFunction({ correo, token })
       .unwrap()
       .then(() => {})
       .catch((error) => {
@@ -51,8 +51,8 @@ export default function EventForm() {
                 }}
               />
               <Field
-                name="eventoId"
-                type="tel"
+                name="token"
+                type="text"
                 label="Token de evento"
                 placeholder="Token de evento"
                 rules={{
