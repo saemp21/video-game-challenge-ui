@@ -97,8 +97,12 @@ export default function CreateTournament() {
     })
       .unwrap()
       .then(() => {
-        alert("registrado");
-        // navigate("/shopping/tournament/resume");
+        navigate("/shopping/tournament/resume");
+      })
+      .catch((error) => {
+        alert({
+          message: error,
+        });
       });
   };
 

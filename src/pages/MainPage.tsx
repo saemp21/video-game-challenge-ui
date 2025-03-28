@@ -64,7 +64,9 @@ export default function MainPage() {
             compra boleta espectador
           </div>
           <div
-            onClick={() => {}}
+            onClick={() => {
+              navigate("/event");
+            }}
             className="border p-4 cursor-pointer hover:bg-slate-100 rounded-lg capitalize font-bold">
             ingresar evento
           </div>

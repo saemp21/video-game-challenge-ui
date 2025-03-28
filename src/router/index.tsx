@@ -7,6 +7,7 @@ import Manager from "../pages/Manager";
 import CreateTournament from "../pages/CreateTournament";
 import Statistics from "../pages/Statistics";
 import StatisticEdit from "../pages/StatisticEdit";
+import EventForm from "../pages/EventForm";
 // import Login from "../pages/Login";
 
 export const routerArray: RouteObject[] = [
@@ -17,10 +18,16 @@ export const routerArray: RouteObject[] = [
         path: "",
         element: <MainPage />,
       },
-      // {
-      //   path: "login",
-      //   element: <Login />,
-      // },
+      {
+        path: "event",
+        element: <Outlet />,
+        children: [
+          {
+            path: "",
+            element: <EventForm />,
+          },
+        ],
+      },
       {
         path: "manager",
         element: <Outlet />,

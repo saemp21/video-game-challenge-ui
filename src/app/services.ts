@@ -1,4 +1,4 @@
-import { ArenaProps, FormSellProps, FormTournamentProps, FormTournamentSuccessResponse, SellSuccessResponse, ShoppingItemsProps } from "../utils/interface";
+import { ArenaProps, EnterEventBodyRequest, EnterEventSuccessResponse, FormSellProps, FormTournamentProps, FormTournamentSuccessResponse, SellSuccessResponse, ShoppingItemsProps } from "../utils/interface";
 import { baseApi } from "./api";
 
 export const service = baseApi.injectEndpoints({
@@ -19,6 +19,13 @@ export const service = baseApi.injectEndpoints({
     //     body,
     //   }),
     // }),
+    enterEvent: build.mutation<EnterEventSuccessResponse, EnterEventBodyRequest>({
+      query: (body) => ({
+        url: "/Prod/ventaTiquete",
+        method: "POST",
+        body
+      })
+    }),
     sellTicket: build.mutation<SellSuccessResponse, FormSellProps>({
       query: (body) => ({
         url: "/Prod/ventaTiquete",
@@ -47,7 +54,7 @@ export const service = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetAllTicketsMutation, useBuyTicketMutation, useSellTicketMutation } = service;
+export const { useGetAllTicketsMutation, useBuyTicketMutation, useSellTicketMutation, useEnterEventMutation } = service;
 
 
 //Compras navega a lista de torneos (desc, titulo, precio)

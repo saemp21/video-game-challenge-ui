@@ -114,3 +114,15 @@ export interface SellSuccessResponse {
     total: number
   }
 }
+
+
+export interface EnterEventSuccessResponse {
+  message: string
+  data: unknown
+
+}
+
+export interface EnterEventBodyRequest {
+  correo: string
+  eventoId: string
+}
