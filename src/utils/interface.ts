@@ -135,3 +135,25 @@ export interface EnterEventBodyRequest {
   correo: string
   eventoId: string
 }
+
+export interface GetAllTournamentSuccessResponse {
+  statusCode: number
+  headers: {
+    "Access-Control-Allow-Origin": string
+  }
+  torneos: Array<{
+    id: string
+    nombre: string
+    descripcion: string
+    valorEntrada: number
+    valorEntradaVista: number
+    fechaInicio: string
+    fpreventafin: string
+    estado: number
+  }>
+}
+
+
+export interface GetAllTournamentBodyRequest {
+  correo: string
+}
